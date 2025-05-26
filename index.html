@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHCT - Metaverse Health Care Token | Interactive Abstract</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .nav-link.active {
+            color: #0D9488; /* teal-700 */
+            font-weight: 600;
+            border-bottom: 2px solid #0D9488;
+        }
+        .objective-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .objective-card.active {
+            border-color: #0D9488; /* teal-700 */
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.3); /* teal-700 with opacity */
+        }
+        .fade-in {
+            animation: fadeInAnimation 0.5s ease-in forwards;
+        }
+        @keyframes fadeInAnimation {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom scrollbar for better aesthetics - optional */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff7ed; /* bg-orange-50 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #14b8a6; /* teal-500 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0d9488; /* teal-700 */
+        }
+    </style>
+</head>
+<body class="bg-orange-50 text-neutral-800 antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#home" class="text-2xl font-bold text-teal-700 hover:text-teal-600 transition-colors">MHCT</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-neutral-700 hover:text-teal-600 transition-colors">Home</a>
+                        <a href="#vision" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-neutral-700 hover:text-teal-600 transition-colors">The Vision</a>
+                        <a href="#initiative" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-neutral-700 hover:text-teal-600 transition-colors">The Token</a>
+                        <a href="#objectives" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-neutral-700 hover:text-teal-600 transition-colors">Objectives</a>
+                        <a href="#utility" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-neutral-700 hover:text-teal-600 transition-colors">Utility</a>
+                        <a href="#ecosystem" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-neutral-700 hover:text-teal-600 transition-colors">Ecosystem</a>
+                        <a href="#disclaimer" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-neutral-700 hover:text-teal-600 transition-colors">Disclaimer</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-teal-600 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-teal-600 hover:bg-orange-100 transition-colors">Home</a>
+                <a href="#vision" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-teal-600 hover:bg-orange-100 transition-colors">The Vision</a>
+                <a href="#initiative" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-teal-600 hover:bg-orange-100 transition-colors">The Token</a>
+                <a href="#objectives" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-teal-600 hover:bg-orange-100 transition-colors">Objectives</a>
+                <a href="#utility" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-teal-600 hover:bg-orange-100 transition-colors">Utility</a>
+                <a href="#ecosystem" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-teal-600 hover:bg-orange-100 transition-colors">Ecosystem</a>
+                <a href="#disclaimer" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-teal-600 hover:bg-orange-100 transition-colors">Disclaimer</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gradient-to-br from-orange-100 via-orange-50 to-amber-100 py-20 px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
+                    <span class="block text-teal-700">Metaverse Health Care Token</span>
+                    <span class="block text-amber-600 text-3xl sm:text-4xl md:text-5xl mt-2">MHCT</span>
+                </h1>
+                <p class="mt-6 text-lg sm:text-xl text-neutral-700 leading-relaxed">
+                    Pioneering the future of medicine and digital innovation. The MHCT initiative supports the groundbreaking work of Dr. Mohanad Al Ansari, fostering advancements in robotic surgery and the revolutionary Metaverse Hospital.
+                </p>
+                <div class="mt-10">
+                    <a href="#initiative" class="inline-block bg-teal-600 text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-teal-700 transition-colors text-lg">
+                        Discover MHCT
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="vision" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center text-teal-700 mb-4">The Visionary Behind MHCT</h2>
+                <p class="text-lg text-center text-neutral-600 mb-12 leading-relaxed">This section introduces the inspiration behind MHCT, highlighting the pioneering work of Dr. Mohanad Al Ansari and his role in shaping next-generation healthcare, bridging advanced medical practices with transformative digital frontiers.</p>
+                <div class="bg-orange-50 p-6 sm:p-8 rounded-xl shadow-lg">
+                    <p class="text-neutral-700 leading-relaxed text-justify">
+                        The Metaverse Health Care Token (MHCT) initiative is inspired by and aims to support the groundbreaking work of <strong class="text-teal-700">Dr. Mohanad Al Ansari</strong>, a distinguished leader in robotic surgery and the visionary behind the Metaverse Hospital. His commitment to integrating advanced technology with patient care forms the cornerstone of MHCT's mission to revolutionize healthcare.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="initiative" class="py-16 sm:py-24 bg-orange-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center text-teal-700 mb-4">The Metaverse Health Care Token</h2>
+                <p class="text-lg text-center text-neutral-600 mb-12 leading-relaxed">Delve into the Metaverse Health Care Token (MHCT) itself – its purpose, mission, and how it aims to create a dedicated financial ecosystem for healthcare innovation.</p>
+                <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+                    <p class="text-neutral-700 leading-relaxed text-justify">
+                        The Metaverse Health Care Token (MHCT) initiative represents a pioneering approach to funding and fostering innovation at the intersection of advanced medicine and emerging digital frontiers. The primary objective of the MHCT is to create a dedicated financial ecosystem to accelerate research, development, and implementation of cutting-edge healthcare solutions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="objectives" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center text-teal-700 mb-4">Core Objectives</h2>
+                <p class="text-lg text-center text-neutral-600 mb-12 leading-relaxed max-w-3xl mx-auto">Explore the primary goals of MHCT. The token is designed to fuel progress across several key areas of healthcare innovation. Click on each objective to learn more.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div data-objective="robotics" class="objective-card bg-orange-50 p-6 rounded-xl shadow-lg border-2 border-transparent cursor-pointer">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-4 text-teal-600">🤖</span>
+                            <h3 class="text-xl font-semibold text-neutral-800">Robotic Surgery Advancements</h3>
+                        </div>
+                        <p class="text-neutral-700 text-sm">Pushing the boundaries of surgical techniques and technologies through robotics.</p>
+                        <span class="hidden objective-description">Advancements in robotic surgical techniques and technologies.</span>
+                    </div>
+                    <div data-objective="metaverse" class="objective-card bg-orange-50 p-6 rounded-xl shadow-lg border-2 border-transparent cursor-pointer">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-4 text-teal-600">🏥</span>
+                            <h3 class="text-xl font-semibold text-neutral-800">Metaverse Hospital Expansion</h3>
+                        </div>
+                        <p class="text-neutral-700 text-sm">Enhancing virtual healthcare for immersive and accessible patient experiences.</p>
+                        <span class="hidden objective-description">Expansion and enhancement of the Metaverse Hospital, creating more immersive and accessible virtual healthcare experiences.</span>
+                    </div>
+                    <div data-objective="research" class="objective-card bg-orange-50 p-6 rounded-xl shadow-lg border-2 border-transparent cursor-pointer">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-4 text-teal-600">🔬</span>
+                            <h3 class="text-xl font-semibold text-neutral-800">Innovative Medical Research</h3>
+                        </div>
+                        <p class="text-neutral-700 text-sm">Funding key research programs initiated or supported by Dr. Al Ansari.</p>
+                        <span class="hidden objective-description">Funding innovative medical research programs initiated or supported by Dr. Al Ansari.</span>
+                    </div>
+                    <div data-objective="education" class="objective-card bg-orange-50 p-6 rounded-xl shadow-lg border-2 border-transparent cursor-pointer">
+                         <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-4 text-teal-600">💻</span>
+                            <h3 class="text-xl font-semibold text-neutral-800">Metaverse Educational Platforms</h3>
+                        </div>
+                        <p class="text-neutral-700 text-sm">Developing platforms for medical professionals and patient education.</p>
+                        <span class="hidden objective-description">Developing educational platforms within the metaverse for medical professionals and patients.</span>
+                    </div>
+                </div>
+
+                <div id="objective-details-display" class="mt-8 p-6 bg-teal-50 rounded-lg min-h-[100px] shadow text-neutral-700 leading-relaxed text-center fade-in">
+                    <p>Click an objective above to see more details here.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="utility" class="py-16 sm:py-24 bg-orange-100">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center text-teal-700 mb-4">Token Utility & Vision</h2>
+                <p class="text-lg text-center text-neutral-600 mb-12 leading-relaxed">Understand the dual purpose of MHCT – how it functions as a fundraising vehicle and aims to foster community participation, including a vision for potential profit sharing.</p>
+                <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg space-y-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-neutral-800 mb-2">1. Fundraising</h3>
+                        <p class="text-neutral-700 leading-relaxed">MHCT aims to provide a transparent and efficient mechanism for raising capital. These funds will be dedicated to accelerating research, developing advanced robotic surgical techniques, expanding the Metaverse Hospital, funding innovative medical research, and creating educational platforms within the metaverse.</p>
+                    </div>
+                    <hr class="border-orange-200">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-neutral-800 mb-2">2. Community Participation & Potential Profit Sharing</h3>
+                        <p class="text-neutral-700 leading-relaxed">The token is designed to offer holders an opportunity to become integral stakeholders in this futuristic healthcare vision. It is proposed that a portion of clearly defined profits, generated from specific activities related to Dr. Al Ansari's work funded by this initiative, will be distributed to MHCT holders. </p>
+                        <p class="mt-3 text-neutral-700 leading-relaxed">The precise mechanisms and definitions for profit sharing are <strong class="text-amber-700">currently under development</strong> and will be subject to rigorous legal and financial structuring. Distributions, when profits are realized and allocated, are anticipated to be made annually, potentially via stablecoins.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem" class="py-16 sm:py-24 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center text-teal-700 mb-4">The MHCT Ecosystem</h2>
+                <p class="text-lg text-center text-neutral-600 mb-12 leading-relaxed">MHCT is more than just a token; it's the foundation for a collaborative ecosystem. Discover the vision for building a transparent, innovative, and engaged community dedicated to advancing healthcare.</p>
+                <div class="bg-orange-50 p-6 sm:p-8 rounded-xl shadow-lg">
+                    <p class="text-neutral-700 leading-relaxed text-justify">
+                        We aim to build a robust and engaged community around MHCT, united by the goal of revolutionizing healthcare delivery. The token will underpin an ecosystem that values transparency, innovation, and collaborative advancement. The technological framework for MHCT will be designed to support its utility, ensuring secure and efficient operations for all participants and stakeholders involved in this transformative journey.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="disclaimer" class="py-16 sm:py-24 bg-neutral-800 text-neutral-300">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+                <h2 class="text-3xl sm:text-4xl font-bold text-center text-amber-400 mb-4">Important Disclaimer</h2>
+                 <p class="text-lg text-center text-neutral-400 mb-10 leading-relaxed">Please read this section carefully to understand the current status of the MHCT project and the inherent risks associated with cryptocurrency investments.</p>
+                <div class="bg-neutral-700 p-6 sm:p-8 rounded-xl shadow-lg">
+                    <p class="leading-relaxed text-sm">
+                        The concept of profit sharing is subject to comprehensive legal and regulatory review. The final structure of the MHCT, including any profit-sharing mechanisms, will be detailed in subsequent documentation following full legal consultation and compliance checks. Potential participants should be aware that the project is in its formative stages, and investments in cryptocurrencies carry inherent risks. This document does not constitute financial advice. All information is provided for informational purposes only.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-neutral-900 text-neutral-400 py-8 text-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-sm">&copy; 2025 MHCT Project. Information based on project abstract.</p>
+            <p class="text-xs mt-1">Symbol: MHCT (Metaverse Health Care Token)</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    menuButton.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+                });
+            }
+
+            // Smooth scroll for navigation links and close mobile menu on click
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Calculate offset for fixed header
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                    // Close mobile menu if open and if it's a mobile nav link
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden') && anchor.classList.contains('nav-link-mobile')) {
+                        mobileMenu.classList.add('hidden');
+                        menuButton.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+                    }
+                });
+            });
+
+            // Active nav link highlighting on scroll
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('nav a.nav-link');
+            const mobileNavLinks = document.querySelectorAll('#mobile-menu a.nav-link-mobile');
+
+            function changeNav() {
+                let index = sections.length;
+                const headerHeight = document.querySelector('header').offsetHeight;
+
+                while(--index && window.scrollY + headerHeight + 50 < sections[index].offsetTop) {}
+                
+                navLinks.forEach((link) => link.classList.remove('active'));
+                mobileNavLinks.forEach((link) => link.classList.remove('active')); // Assuming mobile also has 'active'
+
+                if (navLinks[index]) navLinks[index].classList.add('active');
+                // For mobile, find link with same href
+                const activeHref = navLinks[index] ? navLinks[index].getAttribute('href') : null;
+                if (activeHref) {
+                    const activeMobileLink = document.querySelector(`#mobile-menu a[href="${activeHref}"]`);
+                    if (activeMobileLink) activeMobileLink.classList.add('active');
+                }
+            }
+            changeNav(); // Initial call
+            window.addEventListener('scroll', changeNav);
+
+
+            // Interactive Objectives
+            const objectiveCards = document.querySelectorAll('.objective-card');
+            const objectiveDetailsDisplay = document.getElementById('objective-details-display');
+
+            if (objectiveCards.length > 0 && objectiveDetailsDisplay) {
+                objectiveCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        // Remove active state from all cards
+                        objectiveCards.forEach(c => c.classList.remove('active', 'border-teal-600'));
+                        
+                        // Add active state to clicked card
+                        card.classList.add('active', 'border-teal-600');
+                        
+                        const descriptionElement = card.querySelector('.objective-description');
+                        if (descriptionElement) {
+                            objectiveDetailsDisplay.innerHTML = `<p class="fade-in">${descriptionElement.textContent}</p>`;
+                        } else {
+                            objectiveDetailsDisplay.innerHTML = `<p class="fade-in">Details for this objective are being prepared.</p>`;
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
